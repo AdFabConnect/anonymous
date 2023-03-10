@@ -1,0 +1,32 @@
+{
+  "name": "glacourt/anonymous",
+  "type": "symfony-bundle",
+  "description": "Make database dump anonymous on purpose",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Guillaume Lacourt",
+      "email": "guillaume.lacourt@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=8.0",
+    "doctrine/orm": "^2.12",
+    "doctrine/dbal": "^3.3",
+    "symfony/console": "^5.4",
+    "symfony/http-kernel": "^5.4",
+    "symfony/dependency-injection": "^5.4",
+    "symfony/config": "^5.4",
+    "spatie/db-dumper": "^3.2",
+    "symfony/process": "^5.4",
+    "fzaninotto/faker": "^1.5",
+    "symfony/event-dispatcher": "^5.4",
+    "symfony/property-access": "^5.4",
+    "symfony/string": "^5.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "Anonymous\\": "src/"
+    }
+  }
+}

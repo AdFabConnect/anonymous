@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services https://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <defaults public="false" autowire="false" autoconfigure="false" />
+
+        <prototype namespace="Anonymous\Anonymizer\" resource="../src/Anonymizer/" />
+
+        <instanceof id="Anonymous\Anonymizer\AnonymizerInterface">
+            <tag name="anonymous.anonymizer"/>
+        </instanceof>
+
+        <service id="Anonymous\Command\DumpCommand" autowire="true">
+            <tag name="console.command" command="anonymous:dump" />
+            <tag name="console.command" command="an:du" />
+        </service>
+
+        <service id="anonymous.registry" class="Anonymous\AnonymizerRegistry" />
+
+        <service id="Anonymous\AnonymizerRegistryInterface" alias="anonymous.registry"/>
+
+        <service id="Anonymous\Anonymizer">
+            <argument key="$anonymizerRegistry" type="service" id="anonymous.registry" />
+            <argument key="$managerRegistry" type="service" id="Doctrine\Persistence\ManagerRegistry" />
+            <argument key="$config" type="collection" />
+        </service>
+
+        <service id="anonymous.env_var_processor" class="Anonymous\AnonymousEnvVarProcessor">
+            <tag name="container.env_var_processor" />
+        </service>
+    </services>
+</container>
